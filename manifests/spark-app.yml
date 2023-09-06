@@ -1,0 +1,21 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: sample-spark-app
+  namespace: default
+spec:
+  type: Java
+  mode: cluster
+  image: "public.ecr.aws/d2r2f4i6/spark-app" 
+  mainClass: "sampleApp"
+  mainApplicationFile: "local:///opt/spark/jars/simple-spark-app-1.0-SNAPSHOT.jar"  
+  sparkVersion: "3.0.0"
+  restartPolicy:
+    type: Never
+  driver:
+    cores: 1
+    memory: "512m"
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
