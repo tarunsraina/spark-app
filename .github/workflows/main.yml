@@ -24,13 +24,3 @@ jobs:
         aws-access-key-id: ${{ secrets.ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.ACCESS_SECRET }}
         aws-region: ap-south-1  
-
-    - name: Login to Amazon ECR
-      id: login-ecr
-      run: |
-        echo "$(aws ecr get-login --no-include-email --region ap-south-1)" | sed 's|https://||'  
-
-    - name: Build and push Docker image
-      run: |
-        docker build -t public.ecr.aws/d2r2f4i6/spark-app:latest .
-        docker push public.ecr.aws/d2r2f4i6/spark-app:latest
